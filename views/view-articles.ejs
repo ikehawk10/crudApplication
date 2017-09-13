@@ -1,0 +1,32 @@
+<% include _header %>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Submit Article </a></li>
+        <li><a class="active" href="/view-articles">View Articles<span class="sr-only"></span></a></li>
+       </ul>
+      </div>
+		</div>
+	</nav>
+	<div class="jumbotron">
+		<div class="container text-center">
+			<h1 id="title">Article Library</h1>
+		</div>
+	</div>
+	<div class="container">
+			<% for (let i = 0; i < articles.length; i++) { %>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h2 class="panel-title">Title: <%= articles[i].title %></h2>
+					</div>
+					<h4>Author: <%= articles[i].author %></h4>
+					<p><%= articles[i].body %></p>
+					<button class='btn btn-default'><a href='/articles/<%= articles[i]._id %>/edit'>Edit Article</a></button>
+					<button class='btn btn-danger'<a href='/articles/<%= articles[i]._id %>/delete'>Delete Article</a></button>
+				</div>
+			<% } %>
+	</div>
+
+<% include _footer %>

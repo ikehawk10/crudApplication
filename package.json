@@ -1,0 +1,29 @@
+{
+  "name": "crudapplication",
+  "version": "1.0.0",
+  "description": "This application uses node.js, express.js, mongoDB, and React.js to create, read, update, and delete articles with title and body fields.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikehawk10/crudApplication.git"
+  },
+  "author": "Isaac Hawkins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikehawk10/crudApplication/issues"
+  },
+  "homepage": "https://github.com/ikehawk10/crudApplication#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.0"
+  }
+}
