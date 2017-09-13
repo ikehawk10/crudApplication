@@ -19,11 +19,11 @@
 			<% for (let i = 0; i < articles.length; i++) { %>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2 class="panel-title">Title: <%= articles[i].title %></h2>
+						<h1 class="panel-title"><%= articles[i].title %></h1>
 					</div>
-					<h4>Author: <%= articles[i].author %></h4>
-					<p><%= articles[i].body %></p>
-					<button class='btn btn-default'><a href='/articles/<%= articles[i]._id %>/edit'>Edit Article</a></button>
+					<h4 class="panel-body">By: <%= articles[i].author %></h4>
+					<p class="panel-body"><%= articles[i].body %></p>
+					<button class='btn btn-default'><a href='/articles/<%= articles[i]._id %>'>Edit Article</a></button>
 					<button class='btn btn-danger'<a href='/articles/<%= articles[i]._id %>/delete'>Delete Article</a></button>
 				</div>
 			<% } %>
