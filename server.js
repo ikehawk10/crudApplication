@@ -5,6 +5,7 @@ const app = express();
 
 mongoose.connect('mongodb://ikehawk10:jesus100@ds133814.mlab.com:33814/articles');
 
+//create mongoose model for date entries
 const Article = mongoose.model('articles', {
 	title: String,
 	author: String,
@@ -12,25 +13,19 @@ const Article = mongoose.model('articles', {
 });
 
 app.set('view engine', 'ejs');
-//extract data from the form element
+//extract data from the form inputs
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
-		//retrieve all the articles from the database
-	// let cursor = db.collection('articles').find();
-	// db.collection('articles').find().toArray(function(err, results){
-	// 	console.log(results);
-	// })
 });
 
+//get all the articles from the database and render to the page
 app.get('/view-articles', (req, res) => {
 	Article.find({}, (err, articles) => {
 		res.render('view-articles', {articles});
 	});
 });
-
 
 app.post('/articles/:id', (req, res) => {
 	const { id } = req.params
@@ -47,7 +42,6 @@ app.post('/articles/:id', (req, res) => {
 
 app.post('/articles', (req, res) => {
 	//add user input into the mongodb collection
-	console.log(req.body)
 	const { title, author, body } = req.body
 	const data = { 
 		title, 
@@ -57,15 +51,14 @@ app.post('/articles', (req, res) => {
 
 	Article.create(data, (err, result) => {
 		if (err) return console.log(err);
-		console.log('saved to database');
-		//redirect back to homepage
+		//redirect back to articles page
 		res.redirect('/view-articles');
 	})
 })
 
 app.get('/articles/:id', (req, res) => {
 	const { id } = req.params
-
+	
 	Article.findById(id, (err, article) => {
 		res.render('edit-article', {article});
 	});

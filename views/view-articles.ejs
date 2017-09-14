@@ -1,32 +1,32 @@
 <% include _header %>
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/">Submit Article </a></li>
-        <li><a class="active" href="/view-articles">View Articles<span class="sr-only"></span></a></li>
+	<nav class='navbar navbar-default'>
+		<div class='container-fluid'>
+			<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+      <ul class='nav navbar-nav'>
+        <li><a href='/'>Submit Article </a></li>
+        <li><a class='active' href='/view-articles'>View Articles<span class='sr-only'></span></a></li>
        </ul>
       </div>
 		</div>
 	</nav>
-	<div class="jumbotron">
-		<div class="container text-center">
-			<h1 id="title">Article Library</h1>
+	<div class='jumbotron'>
+		<div class='container text-center'>
+			<h1 id='title'>Article Library</h1>
 		</div>
 	</div>
-	<div class="container">
-			<% for (let i = 0; i < articles.length; i++) { %>
-				<div class="panel panel-danger">
-					<div class="panel-heading">
-						<h1 class="panel-title"><%= articles[i].title %></h1>
+	<div class='container'>
+		<% for (let i = 0; i < articles.length; i++) {%>
+				<div class='panel panel-danger'>
+					<div class='panel-heading'>
+						<h1 class='panel-title'><%= articles[i].title %></h1>
 					</div>
-					<h4 class="panel-body">By: <%= articles[i].author %></h4>
-					<p class="panel-body"><%= articles[i].body %></p>
+					<p class='panel-body'>By: <%= articles[i].author %></p>
+					<p class='panel-body'><%= articles[i].body %></p>
 					<button class='btn btn-default'><a href='/articles/<%= articles[i]._id %>'>Edit Article</a></button>
-					<button class='btn btn-danger'<a href='/articles/<%= articles[i]._id %>/delete'>Delete Article</a></button>
+					<button class='btn btn-default'><a href='/articles/<%= articles[i]._id %>/delete'>Delete Article</a></button>
 				</div>
 			<% } %>
 	</div>
 
-<% include _footer %>
+<% include _footer %>	
