@@ -1,27 +1,34 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+
+const username = 'ikehawk10';
+const access = 'jesus100'
 const data = { 
 		title, 
 		author, 
 		body
 	};
-const { id } = req.params;
-
-mongoose.connect('mongodb://ikehawk10:jesus100@ds133814.mlab.com:33814/articles');
-
-//create mongoose model for date entries
-const Article = mongoose.model('articles', {
-	title: String,
-	author: String,
-	body: String
-});
+const id = req.params.id;
+const Schema = mongoose.Schema;
+const app = express();
 
 app.set('view engine', 'ejs');
-
 //extract data from the form inputs
 app.use(bodyParser.urlencoded({extended: true}));
+
+//create schema for database entries
+const articleSchema = new Schema({
+	title: {type: String, required: true},
+	author: {type: String, required: true},
+	body: {type: String, required: true},
+});
+
+//create mongoose model for data entries
+const Article = mongoose.model('articles', articleSchema);
+
+//connect to mLabs database
+mongoose.connect(`mongodb://${username}:${access}@ds133814.mlab.com:33814/articles`);
 
 //homescreen to render index.html
 app.get('/', (req, res) => {
@@ -48,7 +55,6 @@ app.post('/articles/:id', (req, res) => {
 app.post('/articles', (req, res) => {
 	Article.create(data, (err, result) => {
 		if (err) return console.log(err);
-		//redirect back to articles page
 		res.redirect('/view-articles');
 	})
 })
